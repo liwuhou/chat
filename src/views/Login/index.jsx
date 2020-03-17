@@ -53,9 +53,7 @@ export default class Login extends React.Component{
         if(password.length < 6) return this.showAlert('口令太短，阁下请重新输过！');
         if(password.length > 16) return this.showAlert('口令这么长，我都记不过来！');
 
-        console.log("Login -> handleClickSubmitUserData -> login", login)
         const data = await login({username, password});
-        console.log("Login -> handleClickSubmitUserData -> data", data)
         if(data.status !== 1) return this.showAlert(data.message);
         
         // 模拟请求成功后，响应头写入cookie的操作
