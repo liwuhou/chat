@@ -1,0 +1,74 @@
+@import '~@/css/common';
+
+.message_wrap{
+    @extend %clearfix;
+    line-height: 1.4;
+    margin-bottom: rem(20);
+    &::after{
+        content: '';
+        display:block;
+        clear:both;
+    }
+    .message{
+        @extend %clearfix;
+        %user{
+            @include square(rem(80));
+            position: relative;
+            margin: 0 rem(5);
+            border-radius: 100%;
+            background: #3296fa;
+            font-size: rem(26);
+            color:#ecf0f1;
+            line-height: rem(80);
+            text-align:center;
+            &_icon{
+                position:absolute;
+            }
+        }
+        %speech{
+            @extend %clearfix;
+            width: 100%;
+        }
+        %content{
+            max-width: 75%;
+            text-align:left;
+            margin: 0 rem(8);
+            margin-top: rem(4);
+            padding: rem(14) rem(15);
+            border-radius: rem(8);
+            background: #abcdef;
+        }  
+        &.left_message{
+            margin-right: 20%;
+            text-align: left;
+            .user{
+                @extend %user;
+                float: left;
+            }
+            .speech{
+                @extend %speech;
+                .content{
+                    @extend %content;
+                    float: left;
+                    background-color: #d8d8d8;
+                }
+            }
+        }
+        &.right_message{
+            margin-left: 20%;
+            text-align: right;
+            .user{
+                @extend %user;
+                float: right;
+            }
+            .speech{
+                @extend %speech;
+                .content{
+                    @extend %content;
+                    float: right;
+                    background-color: #c9e7ff;
+                }
+            }
+        }
+    }
+}
