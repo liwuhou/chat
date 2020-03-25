@@ -1,0 +1,14 @@
+@import '~@/css/common';
+
+.chat{
+    @include square(100%);
+    position: relative;
+    height:100%;
+    font-size: rem(28);
+    &__content{
+        box-sizing: border-box;
+        height: calc(100% - #{rem(160)});
+        padding: rem(15) rem(20);
+        overflow: auto;
+    }
+}

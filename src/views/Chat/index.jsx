@@ -1,6 +1,9 @@
 import React from 'react';
 import Heading from '@/components/Heading';
 import MessageList from '@/components/MessageList';
+import ChatInput from '@/components/ChatInput';
+
+import './index.scss';
 
 export default class Chat extends React.Component{
     componentWillUnmount(){
