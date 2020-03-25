@@ -32,6 +32,15 @@ export const getCookie = (key) => {
 }
 
 /**
+ * 获取所有数据的类型
+ * @data Any
+ * @return String
+ */
+export const getDataType = (data) => {
+    return Object.prototype.toString.call(data);
+}
+
+/**
  * 将时间修改为可展示的时间文本
  * @fmt     文本格式
  * @time    时间戳
