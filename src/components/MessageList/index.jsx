@@ -1,21 +1,28 @@
-import React, {useState, useEffect, useRef, Fragment, useImperativeHandle} from 'react';
+// 这里我就用了React hooks的方式写组件了
+import React, {useState, useEffect, useRef, Fragment, useImperativeHandle, forwardRef} from 'react';
 import Notice from '@/components/Notice';
 import Timer from '@/components/Timer';
 import Message from '@/components/Message';
 
-export default function MessageList({list, ownUsername}, ref){
+function MessageList({list = [], ownUsername}, ref){
 	// 当前系统时间戳，为节省性能，会5分钟刷新一次
 	let [currentDate, setDate] = useState(Date.now());
 
+	// 外部容器和聊天容器的ref
 	let chatWrap = useRef(null);
 	let messageWrap = useRef(null);
     
-    // 暴露“回到消息底部”方法
-    useImperativeHandle(ref, () => ({
-        sliderToBottom(){
-            this.chatWrap.current.scrollTop = this.messageWrap.current.offsetHeight;
-        }
-    }))
+    // 暴露子组件的方法给父组件
+	useImperativeHandle(ref, () => ({
+		// 是否需要滑动到底部
+		isNeedSlider: () => {
+			return (chatWrap.current.scrollHeight - (chatWrap.current.scrollTop + chatWrap.current.offsetHeight)) > 500;
+		},
+		// 滑动到底部的方法
+		sliderToBottom:() => {
+			chatWrap.current.scrollTop = messageWrap.current.offsetHeight;
+		}
+	}))
     
 	// 这里每设置一个定时器，每个五分钟刷新下currentDate
 	useEffect(() => {
@@ -48,3 +55,4 @@ export default function MessageList({list, ownUsername}, ref){
 		</div>
 	)
 }
+export default forwardRef(MessageList)
