@@ -4,8 +4,6 @@ import Notice from '@/components/Notice';
 import Timer from '@/components/Timer';
 import Message from '@/components/Message';
 
-import './index.scss';
-
 function MessageList({list = [], ownUsername}, ref){
 	// 当前系统时间戳，为节省性能，会5分钟刷新一次
 	let [currentDate, setDate] = useState(Date.now());
