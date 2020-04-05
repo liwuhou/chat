@@ -4,6 +4,8 @@ import Notice from '@/components/Notice';
 import Timer from '@/components/Timer';
 import Message from '@/components/Message';
 
+import './index.scss';
+
 function MessageList({list = [], ownUsername}, ref){
 	// 当前系统时间戳，为节省性能，会5分钟刷新一次
 	let [currentDate, setDate] = useState(Date.now());
@@ -36,8 +38,8 @@ function MessageList({list = [], ownUsername}, ref){
 		<div className="chat__content" ref={chatWrap}>
 			<ul ref={messageWrap}>
 				{
-					list.map(({_id, time, isShowTime = false, username, content, event = 'chat'}, idx) => (
-						<li key={_id}>
+					list.map(({_id, time, isShowTime = false, username, content, event = 'chat'}) => (
+						<li className="message_wrap" key={_id}>
 							{
 								event === 'notice' ? (
                                     <Notice content={content}/>
